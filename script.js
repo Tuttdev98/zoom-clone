@@ -4,8 +4,8 @@ const vm = new Vue({
         userToken: '',
         roomToken: '',
         roomId: '',
-        room: '',
-        client: ''
+        room: undefined,
+        client: undefined,
     },
     methods: {
         createRoom: async function() {
