@@ -7,6 +7,9 @@ const vm = new Vue({
         room: undefined,
         client: undefined,
     },
+    mounted() {
+        api.setRestToken();
+    },
     methods: {
         createRoom: async function() {
             const room = await api.createRoom();
