@@ -9,7 +9,11 @@ const vm = new Vue({
     },
     methods: {
         createRoom: async function() {
-            console.log('createRoom')
+            const room = await api.createRoom();
+            const roomToken = await api.getRoomToken(room.roomId);
+
+            this.roomId = room.roomId;
+            this.roomToken = roomToken;
         },
 
         joinRoom: async function() {
