@@ -28,7 +28,7 @@ const vm = new Vue({
             })
         },
         publishVideo: function() {
-            const localTrack = StringeeVideo.getLocalTrack(this.client, {
+            const localTrack = StringeeVideo.createLocalTrack(this.client, {
                 audio: true,
                 video: true,
                 videoDimensions: { width: 640, height: 360 }
