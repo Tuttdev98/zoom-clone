@@ -1,4 +1,4 @@
-let videoContainer = document.getElementById("videos");
+let videoContainer = document.querySelector('#videos');
 
 const vm = new Vue({
     el: "#app",
