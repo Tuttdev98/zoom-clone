@@ -1,4 +1,4 @@
-const videoContainer = document.getElementById("videos");
+let videoContainer = document.querySelector("#videos");
 
 const vm = new Vue({
     el: "#app",
@@ -37,7 +37,7 @@ const vm = new Vue({
             });
 
             var videoElement = localTrack.attach();
-            videoContainer.appendChild("Hello World");
+            videoContainer.appendChild(videoElement);
         },
         createRoom: async function() {
             const room = await api.createRoom();
