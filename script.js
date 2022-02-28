@@ -37,7 +37,7 @@ const vm = new Vue({
             });
 
             var videoElement = localTrack.attach();
-            videoContainer.appendChild(videoElement);
+            document.body.appendChild(videoElement);
         },
         createRoom: async function() {
             const room = await api.createRoom();
