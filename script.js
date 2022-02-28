@@ -28,7 +28,7 @@ const vm = new Vue({
                 this.client = client;
             })
         },
-        publishVideo: function() {
+        publishVideo: async function() {
 
             const localTrack = await StringeeVideo.createLocalVideoTrack(this.client, {
                 audio: true,
