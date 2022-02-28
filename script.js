@@ -13,6 +13,7 @@ const vm = new Vue({
         api.setRestToken();
     },
     methods: {
+
         login: function() {
             return new Promise(async resolve => {
                 const userId = (Math.random() * 10000).toFixed(0);
@@ -28,11 +29,13 @@ const vm = new Vue({
             })
         },
         publishVideo: function() {
-            const localTrack = StringeeVideo.createLocalVideoTrack(this.client, {
+
+            const localTrack = await StringeeVideo.createLocalVideoTrack(this.client, {
                 audio: true,
                 video: true,
                 videoDimensions: { width: 640, height: 360 }
             });
+
             var videoElement = localTrack.attach();
             videoContainer.addChild(videoElement);
         },
