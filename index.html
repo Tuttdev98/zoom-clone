@@ -20,15 +20,23 @@
 </head>
 
 <body>
-    <div class="container has-text-centered">
+    <div class="container has-text-centered" id="app">
         <h1 class="title">
             Zoom Clone Dev
         </h1>
+        <div>
+            <button @click="createRoom">Tạo Nhóm</button>
+            <button @click="joinRoom">Tham Gia</button>
+        </div>
+
+
+
+        <div class="container">
+            <div id="videos"></div>
+        </div>
     </div>
 
-    <div class="container">
-        <div id="videos"></div>
-    </div>
+
 </body>
 
 <script src="/api.js"></script>
