@@ -23,11 +23,11 @@
     <div class="container has-text-centered" id="app">
         <h1 class="title">
             Zoom Clone Dev
-            <span>{{roomId}}</span>
-            <span>{{roomToken}}</span>
-
         </h1>
+        <span>{{roomId}}</span>
+        <span>{{roomToken}}</span>
         <div>
+            <button @click="login">Login</button>
             <button @click="createRoom">Tạo Nhóm</button>
             <button @click="joinRoom">Tham Gia</button>
         </div>

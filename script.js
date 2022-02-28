@@ -11,6 +11,18 @@ const vm = new Vue({
         api.setRestToken();
     },
     methods: {
+        login: async function() {
+            const userId = (Math.random() * 10000).toFixed(0);
+            const userToken = await api.getUserToken(userId);
+            this.userToken = userToken;
+            const client = new StringeeClient();
+            client.on("authen", (result) => {
+                console.log(result);
+            });
+            client.connect(userToken);
+            this.client = client;
+        },
+
         createRoom: async function() {
             const room = await api.createRoom();
             const roomToken = await api.getRoomToken(room.roomId);
@@ -20,7 +32,14 @@ const vm = new Vue({
         },
 
         joinRoom: async function() {
-            console.log('joinRoom')
+            const roomId = prompt('Dán Room ID vào Đây');
+            if (!roomId) {
+                return
+            }
+
+            const roomToken = await api.getRoomToken(roomId);
+            this.roomId = roomId;
+            this.roomToken = roomToken;
         }
     }
 
