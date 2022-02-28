@@ -1,3 +1,5 @@
+const videoContainer = document.querySelector("#videos");
+
 const vm = new Vue({
     el: "#app",
     data: {
@@ -11,24 +13,38 @@ const vm = new Vue({
         api.setRestToken();
     },
     methods: {
-        login: async function() {
-            const userId = (Math.random() * 10000).toFixed(0);
-            const userToken = await api.getUserToken(userId);
-            this.userToken = userToken;
-            const client = new StringeeClient();
-            client.on("authen", (result) => {
-                console.log(result);
-            });
-            client.connect(userToken);
-            this.client = client;
+        login: function() {
+            return new Promise(async resolve => {
+                const userId = (Math.random() * 10000).toFixed(0);
+                const userToken = await api.getUserToken(userId);
+                this.userToken = userToken;
+                const client = new StringeeClient();
+                client.on("authen", (result) => {
+                    console.log(result);
+                    resolve(result);
+                });
+                client.connect(userToken);
+                this.client = client;
+            })
         },
-
+        publishVideo: function() {
+            const localTrack = StringeeVideo.getLocalTrack(this.client, {
+                audio: true,
+                video: true,
+                videoDimensions: { width: 640, height: 360 }
+            });
+            const videoElement = localTrack.attack();
+            videoContainer.appendChild(videoElement);
+        },
         createRoom: async function() {
             const room = await api.createRoom();
             const roomToken = await api.getRoomToken(room.roomId);
 
             this.roomId = room.roomId;
             this.roomToken = roomToken;
+
+            await this.login();
+            await this.publishVideo();
         },
 
         joinRoom: async function() {
